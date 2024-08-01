@@ -1,25 +1,29 @@
-const http = require('http');
-const host = 'localhost';
+const http = require("http");
 const port = 1324;
+const host = "localhost";
 
-const requestListener = function (req, res) {
+const server = http.createServer((req, res) => {
     const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+        'Access-Control-Allow-Origin': "*",
+        'Access-Control-Allow-Methods': "OPTIONS, POST, GET, DELETE",
         'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Max-Age': 2592000,
     }
-    if (req.method === 'POST') {
-        res.writeHead(204, headers);
-        res.end();
-        return;
+    if(req.method === "POST"){
+        let body = '';
+
+        req.on('data', chunk => {
+            body += chunk;
+        })
+        req.on('end', () => {
+            const data = JSON.parse(body);
+            console.log(data);
+        })
     }
 
     res.writeHead(200, headers);
-    res.end("My first server");
-}
+    res.end();
+});
 
-const server = http.createServer(requestListener)
 server.listen(port, host, () => {
-    console.log("Server running at port 1324");
+    console.log("Server runnung at port 1324");
 })

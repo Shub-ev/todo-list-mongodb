@@ -25,9 +25,6 @@ form.onsubmit = (eve) => {
 
     const url = "http://localhost:1324/";
 
-    // creating headers
-    const header = new Headers();
-
     fetch(url, {
         method: "POST",
         mode: 'cors',
