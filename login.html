@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+    <div class="loginForm">
+        <p class="mainTitle">LOGIN</p>
+        <div class="inputSet">
+            <label for="">USERNAME</label>
+            <input type="text" autocomplete="off" autofocus="on" required>
+        </div>
+        <div class="inputSet">
+            <label for="">PASSWORD</label>
+            <input type="password" autocomplete="off" required>
+        </div>
+        <p class="resetText">Forget Password? <span style="font-weight: 900; font-size: 13px; cursor: pointer;">Reset</span></p>
+        <div class="buttons">
+            <button class="btn" id="login">LOGIN</button>
+            <button class="btn" id="signup">SIGN UP</button>
+        </div>
+    </div>
+
+    <script>
+        const signup = document.getElementById("signup");
+        signup.addEventListener('click', () => {
+            location.href = "./signup.html";
+        })
+    </script>
+</body>
+</html>

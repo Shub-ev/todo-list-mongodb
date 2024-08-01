@@ -1,0 +1,15 @@
+{
+  "name": "todo_list",
+  "version": "1.0.0",
+  "description": "A todo list for tracking our day to day tasks and practicing CI/CD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shubham_gharage",
+  "license": "ISC",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "mongodb": "6.8"
+  }
+}
