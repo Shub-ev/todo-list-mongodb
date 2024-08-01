@@ -30,6 +30,7 @@ form.onsubmit = (eve) => {
 
     fetch(url, {
         method: "POST",
+        mode: 'cors',
         body: JSON.stringify(data),
         headers: {
             "Content-Type": "application/json",
