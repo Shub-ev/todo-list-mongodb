@@ -3,6 +3,7 @@ const host = 'localhost';
 const port = 1324;
 
 const requestListener = function (req, res) {
+    console.log(req);
     res.writeHeader(200);
     res.end("My first server");
 }

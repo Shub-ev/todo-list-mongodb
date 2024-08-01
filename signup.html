@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO</title>
-    <script src="./scripts/signup.js" defer></script>
     <link rel="stylesheet" href="./login.css">
 </head>
 <body>
-    <form class="loginForm" id="form">
+    <form class="loginForm" id="form" autocomplete="off">
         <p class="mainTitle">SIGNUP</p>
         <div class="inputSet">
-            <label for="">USERNAME</label>
-            <input type="text" id="name" autocomplete="off" autofocus="on" required>
+            <label for="name">USERNAME</label>
+            <input type="text" id="name" required>
         </div>
         <div class="inputSet">
-            <label for="">PASSWORD</label>
-            <input type="password" id="pass1" autocomplete="off" required>
+            <label for="pass1">PASSWORD</label>
+            <input type="password" id="pass1" required>
         </div>
         <div class="inputSet">
-            <label for="">CONFIRM PASSWORD</label>
-            <input type="password" id="pass2" autocomplete="off" required>
+            <label for="pass2">CONFIRM PASSWORD</label>
+            <input type="password" id="pass2" required>
         </div>
         <div class="buttons">
             <button class="btn" id="login" type="submit">SIGN UP</button>
             <button class="btn" id="signup" type="button">LOGIN</button>
         </div>
     </form>
+
+    <script src="./logic/signup.js"></script>
 </body>
 </html>
