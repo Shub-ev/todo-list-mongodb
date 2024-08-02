@@ -1,11 +1,13 @@
 const http = require('http');  // import http module
-const mongodb = require('mongodb'); // importing mongodb driver
+const { MongoClient } = require('mongodb'); // importing mongodb driver
 const port = 1324;  // setting the port number on which the server will respond
 const host = "localhost";  // domain for the the server will be localhost
 const uri = process.env['URI_MONGO'];
 
 console.log(uri);
 
+
+const client = new MongoClient(uri);
 
 const serverReq = (req, res) => {   // creating a function (call back) for createServer() method of http module which acceps 2 paras
     // 1. req which is the request object 
@@ -17,17 +19,43 @@ const serverReq = (req, res) => {   // creating a function (call back) for creat
     }
     if (req.method === "POST") {     // checking if req is of POST method
         let body = '';
+        let userCredentials;
 
         req.on('data', chunk => {   // collecting data of request into single string
             body += chunk;
         })
-        req.on('end', () => {
-            const data = JSON.parse(body);
-            console.log(data);
-        })
+        req.on('end', async () => {
+            userCredentials = JSON.parse(body);
+            console.log(userCredentials);
 
-        res.writeHead(200, header);
-        res.end(JSON.stringify({ res: "Okay" }));
+            if(userCredentials.pr === "signup"){
+                try { 
+                    const db = client.db("todo-list");  // database 
+                    const authColl = db.collection('auth'); // collection
+                    const isPresent = await authColl.findOne({uname: userCredentials.name})
+                    
+                    if(isPresent){
+                        console.log('if block');
+                        res.writeHead(200, header);
+                        res.end(JSON.stringify({res : "user present"}));
+                    }
+                    else{
+                        try{
+                            authColl.insertOne({ uname: userCredentials.name, pass: userCredentials.pass })
+                        }
+                        finally{
+                            res.writeHead(200, header);
+                            res.end(JSON.stringify({res: "user created"}));
+                        }
+                    }
+                }
+                catch (e) {
+                    console.error(e);
+                    res.writeHead(204, header);
+                    res.end(JSON.stringify({}));
+                }
+            }
+        })
     }
     else {
         res.writeHead(204, header);

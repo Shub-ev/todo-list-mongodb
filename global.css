@@ -1,3 +1,73 @@
-#response{
-    
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    letter-spacing: 4px;
+}
+
+#message {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    /* min-width: 260px; */
+    transform: translateX(-50%);
+    font-size: 14px;
+    padding: 0.6em 2em;
+    gap: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1em;
+    opacity: 0;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+.successColor{
+    border: 1px solid rgb(255, 221, 174);
+    background-color: rgb(255, 244, 229);
+}
+.errorColor{
+    border: 1px solid rgb(176, 26, 0);
+    background-color: rgb(255, 181, 168);
+}
+
+#message.success {
+    top: 4vh;
+    opacity: 1;
+}
+#message.error{
+    top: 4vh;
+    opacity: 1;
+}
+
+#message > img {
+    height: 22px;
+}
+#messageText{
+    display: inline-block;
+    min-width:min-content;
+}
+
+@keyframes rotateLoader {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+#loader{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+#loader > img{
+    height: 3em;
+    animation: rotateLoader 1.5s linear infinite;
 }

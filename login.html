@@ -5,30 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO</title>
     <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="./global.css">
 </head>
 <body>
-    <div class="loginForm">
+    <form class="loginForm">
         <p class="mainTitle">LOGIN</p>
         <div class="inputSet">
             <label for="">USERNAME</label>
-            <input type="text" autocomplete="off" autofocus="on" required>
+            <input type="text" autocomplete="off" autofocus="on" id="name" required>
         </div>
         <div class="inputSet">
             <label for="">PASSWORD</label>
-            <input type="password" autocomplete="off" required>
+            <input type="password" id="pass1" autocomplete="off" required>
         </div>
         <p class="resetText">Forget Password? <span style="font-weight: 900; font-size: 13px; cursor: pointer;">Reset</span></p>
         <div class="buttons">
             <button class="btn" id="login">LOGIN</button>
             <button class="btn" id="signup">SIGN UP</button>
         </div>
+    </form>
+
+    <div id="message">
+        <img src="" alt="" id="messageIcon">
+        <p id="messageText"></p>
+    </div>
+    <div id="loader">
+        <img src="./assets/loader.png" alt="">
     </div>
 
-    <script>
-        const signup = document.getElementById("signup");
-        signup.addEventListener('click', () => {
-            location.href = "./signup.html";
-        })
-    </script>
+
+    <script src="./logic/login.js"></script>
 </body>
 </html>
