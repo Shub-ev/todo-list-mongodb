@@ -55,9 +55,20 @@ form.onsubmit = (eve) => {
             throw new Error("");
         }
         else{
+            loader.style.display = "none";
             const jsonPromise = response.json();
             jsonPromise.then((response) => {
                 console.log(response);
+                if(response.res == "login success"){
+                    showSuccess("Login Success");
+                    location.href = "./index.html";
+                }
+                else if(response.res == "user not preset"){
+                    showError("User not present!");
+                }
+                else{
+                    throw new Error("");
+                }
             })
         }
     }).catch(error => {
@@ -67,5 +78,5 @@ form.onsubmit = (eve) => {
 }
 
 signup.addEventListener('click', () => {
-    location.href = "./login.html";
+    location.href = "./signup.html";
 })

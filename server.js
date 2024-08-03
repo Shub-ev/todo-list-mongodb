@@ -27,26 +27,49 @@ const serverReq = (req, res) => {   // creating a function (call back) for creat
         req.on('end', async () => {
             userCredentials = JSON.parse(body);
             console.log(userCredentials);
+            const db = client.db("todo-list");  // database 
+            const authColl = db.collection('auth'); // collection
 
-            if(userCredentials.pr === "signup"){
-                try { 
-                    const db = client.db("todo-list");  // database 
-                    const authColl = db.collection('auth'); // collection
-                    const isPresent = await authColl.findOne({uname: userCredentials.name})
-                    
-                    if(isPresent){
+            if (userCredentials.pr === "signup") {
+                try {
+                    const isPresent = await authColl.findOne({ uname: userCredentials.name })
+
+                    if (isPresent) {
                         console.log('if block');
                         res.writeHead(200, header);
-                        res.end(JSON.stringify({res : "user present"}));
+                        res.end(JSON.stringify({ res: "user present" }));
                     }
-                    else{
-                        try{
+                    else {
+                        try {
                             authColl.insertOne({ uname: userCredentials.name, pass: userCredentials.pass })
                         }
-                        finally{
+                        finally {
                             res.writeHead(200, header);
-                            res.end(JSON.stringify({res: "user created"}));
+                            res.end(JSON.stringify({ res: "user created" }));
                         }
+                    }
+                }
+                catch (e) {
+                    console.error(e);
+                    res.writeHead(204, header);
+                    res.end(JSON.stringify({}));
+                }
+            }
+            else if (userCredentials.pr === "login") {
+                try {
+                    const isPresent = await authColl.findOne({
+                        "uname": `${userCredentials.user}`,
+                        "pass": `${userCredentials.pass}`
+                    })
+                    
+
+                    if (isPresent) {
+                        res.writeHead(200, header);
+                        res.end(JSON.stringify({ res: "login success" }));
+                    }
+                    else {
+                        res.writeHead(200, header);
+                        res.end(JSON.stringify({ res: "user not preset" }));
                     }
                 }
                 catch (e) {
