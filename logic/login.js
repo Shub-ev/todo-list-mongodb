@@ -39,9 +39,6 @@ form.onsubmit = (eve) => {
         pass: pass1.value,
     };
 
-    console.log(credentials);
-
-
     const url = "http://localhost:1324/";
     const fetchPromise = fetch(url, {
         method: "POST",
@@ -61,6 +58,7 @@ form.onsubmit = (eve) => {
                 console.log(response);
                 if(response.res == "login success"){
                     showSuccess("Login Success");
+                    document.cookie = `auth=uname:${nm.value},pass:${pass1.value}`;
                     location.href = "./index.html";
                 }
                 else if(response.res == "user not preset"){

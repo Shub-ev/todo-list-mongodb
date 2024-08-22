@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 2vh 5vw;
+}
+
+#sideBar{
+    display: none;
+    position: absolute;
+    right: 3vw;
+    top: 7vh;
+    /* background-color: aliceblue; */
+    height: 20vh;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2vh 2vw;
+    border: 1px solid gray;
+}
+.option{
+    font-size: 12px;
+}
+.menuBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#menuBtn{
+    width: 28px;
+}
+#closeSideBar{
+    width: 30px;
+    position: relative;
+}
+#logo{
+    width: 100px;
+}
+
+.btn{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 10px;
+    padding: 6px 12px;
+    border: none;
+}
+
+.taskHero{
+    background-color: red;
+    margin-top: 10vh;
+    max-width: 670px;
+    display: flex;
+    gap: 10px;
+    /* width: 100%; */
+}
+.taskHero > input{
+    width: 100%;
+}
+.taskHero > button{
+    width: fit-content;
+    font-size: 28px;
+}

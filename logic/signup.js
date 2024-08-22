@@ -46,6 +46,8 @@ function showError(text){
     }, 3000);
 }
 
+console.log(document.cookie);
+
 form.onsubmit = (e) => { 
     loader.style.display = "flex";
     e.preventDefault();
@@ -94,6 +96,7 @@ form.onsubmit = (e) => {
                 else if(result.res == "user created"){
                     showSuccess("User Created!");
                     location.href = "./index.html";
+                    document.cookie = `auth=uname:${nm},pass:${p1}`;
                 }
             })
         }
