@@ -11,7 +11,7 @@ body{
     position: absolute;
     right: 3vw;
     top: 7vh;
-    /* background-color: aliceblue; */
+    background-color: white;
     height: 20vh;
     flex-direction: column;
     justify-content: space-between;
@@ -20,6 +20,7 @@ body{
 }
 .option{
     font-size: 12px;
+    cursor: pointer;
 }
 .menuBar{
     display: flex;
@@ -28,6 +29,7 @@ body{
 }
 #menuBtn{
     width: 28px;
+    cursor: pointer;
 }
 #closeSideBar{
     width: 30px;
@@ -46,17 +48,71 @@ body{
 }
 
 .taskHero{
-    background-color: red;
-    margin-top: 10vh;
-    max-width: 670px;
+    margin-top: 4vh;
     display: flex;
-    gap: 10px;
-    /* width: 100%; */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
-.taskHero > input{
+.taskHero input{
+    height: 28px;
     width: 100%;
+    border: 0.5px solid;
+    border-color: rgb(194, 194, 194);
+    outline: none;
+    border-radius: 6px;
+    padding: 0 10px;
 }
-.taskHero > button{
-    width: fit-content;
-    font-size: 28px;
+
+.taskSubmit{
+    background-color:  rgb(74, 74, 235);
+    border: none;
+    color: white;
+    padding: 0 20px;
+    border-radius: 6px;
+    letter-spacing: 0;
+    height: 28px;
+    cursor: pointer;
+}
+
+@media (min-width: 640px){
+    body{
+        margin: 20px 10vw;
+    }
+    #sideBar{
+        right: 10vw;
+        padding: 1vh 1vw;
+    }
+}
+
+@media (min-width: 1028px){
+    body{
+        margin: 20px 26vw;
+    }
+    #logo{
+        width: 160px;
+    }
+    #menuBtn{
+        width: 36px;
+    }
+    #sideBar{
+        right: 26vw;
+        padding: 1vh 1vw;
+    }
+    .option{
+        font-size: 16px;
+    }
+    .taskHero{
+        margin-top: 8vh;
+    }
+    .taskHero{
+        gap: 20px;
+    }
+    .taskHero input{
+        height: 36px;
+    }
+    .taskSubmit{
+        height: 36px;
+        font-size: 18px;
+    }
 }

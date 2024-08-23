@@ -52,9 +52,9 @@ form.onsubmit = (eve) => {
             throw new Error("");
         }
         else{
-            loader.style.display = "none";
             const jsonPromise = response.json();
             jsonPromise.then((response) => {
+                loader.style.display = "none";
                 console.log(response);
                 if(response.res == "login success"){
                     showSuccess("Login Success");
