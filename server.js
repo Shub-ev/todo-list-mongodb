@@ -78,7 +78,7 @@ const serverReq = (req, res) => {   // creating a function (call back) for creat
                     res.end(JSON.stringify({}));
                 }
             }
-        })
+        });
     }
     else {
         res.writeHead(204, header);
@@ -89,5 +89,5 @@ const serverReq = (req, res) => {   // creating a function (call back) for creat
 const server = http.createServer(serverReq); // createServer is the method of the 
 
 server.listen(port, host, () => {
-    console.log(`Server is running at port:${port}`);
+    console.log(`Data Server is running at port:${port}`);
 })
