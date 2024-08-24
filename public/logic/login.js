@@ -34,46 +34,47 @@ form.onsubmit = (eve) => {
     eve.preventDefault();
 
     const credentials = {
-        pr : "login",
+        pr: "login",
         user: nm.value,
         pass: pass1.value,
     };
 
     const url = "http://localhost:1324/api/auth";
-    const fetchPromise = fetch(url, {
+    fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': "application/json",
         },
         body: JSON.stringify(credentials),
-    });
-    fetchPromise.then((response) => {
+    })
+    .then(response => {
         if (!response.ok) {
-            throw new Error("");
+            throw new Error("Failed to authenticate.");
         }
-        else{
-            const jsonPromise = response.json();
-            jsonPromise.then((response) => {
-                loader.style.display = "none";
-                console.log(response);
-                if(response.res == "login success"){
-                    showSuccess("Login Success");
-                    document.cookie = `auth=uname:${nm.value},pass:${pass1.value}`;
-                    location.href = "./index.html";
-                }
-                else if(response.res == "user not preset"){
-                    showError("User not present!");
-                }
-                else{
-                    throw new Error("");
-                }
-            })
+        return response.json();
+    })
+    .then(response => {
+        console.log(response);
+        if (response.res === "login success") {
+            showSuccess("Login Success");
+            document.cookie = `auth=uname:${nm.value},pass:${pass1.value};secure;HttpOnly;`;
+            setTimeout(() => {
+                location.href = "./index.html";
+            }, 1000); // Add a delay to ensure the user sees the success message
+        } else if (response.res === "user not present") {
+            showError("User not present!");
+        } else {
+            throw new Error("Unexpected response from server.");
         }
-    }).catch(error => {
+    })
+    .catch(error => {
         showError("Connection Error!");
         console.error(error);
+    })
+    .finally(() => {
+        loader.style.display = "none";
     });
-}
+};
 
 signup.addEventListener('click', () => {
     location.href = "./signup.html";
