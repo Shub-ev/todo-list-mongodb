@@ -73,7 +73,7 @@ form.onsubmit = (e) => {
         pass: p1,
     } 
 
-    const url = "http://localhost:1324/";
+    const url = "http://localhost:1324/api/auth";
 
     const fetchPromise = fetch(url, {
         method: "POST",

@@ -39,7 +39,7 @@ form.onsubmit = (eve) => {
         pass: pass1.value,
     };
 
-    const url = "http://localhost:1324/";
+    const url = "http://localhost:1324/api/auth";
     const fetchPromise = fetch(url, {
         method: "POST",
         headers: {
